@@ -1,0 +1,25 @@
+options emailhost=
+ (
+   "smtp.gmail.com" 
+   /* alternate: port=487 SSL */
+   port=587 STARTTLS 
+   auth=plain 
+   /* your Gmail address */
+   id="your_address@gmail.com"
+   /* optional: encode PW with PROC PWENCODE */
+   pw="your_password" 
+ )
+;
+ 
+filename myemail EMAIL
+  to="lucky_recipient@gmail.com" 
+  subject="Read SAS blogs";
+ 
+data _null_;
+  file myemail;
+  put "Dear Friend,";
+  put "I recommend that you read https://blogs.sas.com ";
+  put "for lots of SAS news and tips.";
+run;
+ 
+filename myemail clear;
